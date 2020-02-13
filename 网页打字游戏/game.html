@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
+        <script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/random.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			/* 页面初始化 */
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			/* 展开样式 */
+			#box{
+				width: 650px;
+				height: 427px;
+				background: yellow;
+				margin: 0 auto;/* 居中 */
+				/* 向下偏移 */
+				position: relative;/* 相对的 */
+				top: 100px;
+			}
+			#page1{
+				width: 650px;
+				height: 427px;
+				
+				background: url(img/game.jpg);
+				position: absolute;
+				top:0px;
+				left: 0px;
+				z-index: 999;/* 层设置 */
+		    }
+			#start{
+					width: 130px;
+					height: 36px;
+					/* border: 3px solid yellow; */
+					position: absolute;
+					bottom: 65px;
+					left: 5px;
+					/* 制作圆角 */
+					border-radius: 20px;
+					
+				}
+			#decription{
+					width: 130px;
+					height: 36px;
+					/* border: 3px solid yellow; */
+					position: absolute;
+					bottom: 8px;
+					left: 5px;
+					/* 制作圆角 */
+					border-radius: 20px;
+				}
+			#decription_win{
+					width: 256px;
+					height: 133px;
+					background: white;
+					border: 5px solid rgb(135,206,235);
+					padding: 20px;
+					margin: 0 auto;
+					position: relative;
+					top: 100px;
+					display: none;
+				}
+			#decription_win:hover span{/* 设置页面隐形.复现. */
+					display: inline-block;
+				}
+			#decription_win span{
+					/* 元素类型的转化,转化为行内块元素 */
+					/* width: 25px; 无用*/
+					/* background: #FFFF00; */
+					display:none;;
+					border: 1px solid gray;
+					/* 定位 */
+					position: absolute;
+					top: 0px;
+					right: 0px;
+				}
+			#lohin_win{
+					width: 256px;
+					height: 133px;
+					background: white;
+					border: 5px solid rgb(135,206,235);
+					padding: 20px;
+					margin: 0 auto;
+					position: relative;
+					top: 100px;
+					display: none;
+					}
+			#lohin_win h2{
+				text-align: center;
+			    }
+			#lohin_win input{
+				width: 100%;
+			}
+			#register_win{
+					width: 256px;
+					height: 133px;
+					background: white;
+					border: 5px solid rgb(135,206,235);
+					padding: 20px;
+					margin: 0 auto;
+					position: relative;
+					top: 100px;
+					display: none;
+					}
+			#register_win h2{
+				text-align: center;
+			    }
+			#register_win input{
+				width: 100%;
+			}
+				
+			#page2{
+				width: 650px;
+				height: 427px;
+				background: gray;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				/* 溢出处理 */
+				overflow: hidden;
+			}
+			#grade{
+				width: 150px;
+				height: 100px;
+				/* background: yellow; */
+				position: absolute;/* 绝对的 */
+				right:0px;
+				/* top: 0px; */
+			}
+			#grade span{
+				display: block;/* 块级元素换行 */
+				line-height: 30px;
+				color: rgb(135,206,235);
+			}
+			#grade strong{
+				font-weight: normal;
+			}
+			#speed{
+				width: 130px;
+				height: 76px;
+				background: white;
+				margin: 0 auto;
+				position: relative;
+				top: 170px;
+				border: 7px solid rgb(135,206,235);
+				text-align: center;/* 文本居中 */
+				display: none;
+			}
+			#speed select{
+				width: 50px;
+				height: 30px;
+				/* margin: 0 auto;不起作用,margin只针对块级元素 */
+				position: relative;
+			    top: 30px;
+			}
+			#speed:hover span{ /* 鼠标放到这个块上就还原为原来样子. */
+				display: block;
+			}
+			#speed span{
+				/* background: red; */
+				display: none;/* 隐藏元素 */
+				position: absolute;/* 绝对的 */
+				right: 0px;
+				top: 0px;
+				border: 1px solid green;
+			}
+			#buts {
+				width: 100px;
+				height: 100px;
+				/* background: yellow; */
+				position: absolute;
+				/* left: 0px; */
+				bottom: 0px;/* 底部 */
+				
+			}
+			#buts span{
+				display: block;/* 类型转化 转化为块级元素 */
+				width: 40px;
+				height: 40px;
+				background: rgb(135,206,235);
+				text-align: center;
+				line-height:40px ;
+				border-radius: 22.5px;
+				color: white;
+			}
+			#buts span:hover{
+				background: rgb(50,205,50);
+			}
+			/* "设置”按钮的位置 */
+			#buts_set{
+				position: absolute;
+				right: 0px;
+				top: 30px;
+			}
+			#buts_over{
+				position: absolute;
+				bottom: 0px;
+				left: 30px;
+			}
+			#buts_exit{
+				position: absolute;
+				top: 0px;
+				left: 30px;
+			}
+			#buts_start{
+				position: absolute;
+				left: 0px;
+				top: 30px;
+			}
+			/* 字母样式 */
+			.word{
+				display: block;/* 转化块级元素 */
+				width: 30px;
+				height: 30px;
+				background: blue;
+				text-align: center;/* 文本水平居中 */
+				line-height: 30px;/* 文本垂直居中 */
+				border-radius: 15px;/* 转化为圆形 */
+				/* 定位方式 */
+				position: absolute;/* 相对位置 */
+				left: 0px;/* 将来变成随机效果 */
+				top: -30px;/* 固定不变 */
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 创建页面主要游戏区 -->
+		<div id="box">
+			<div id="page1">
+				<div id="start"><!-- 按钮1 开始 -->
+					
+				</div>
+				<div id="decription"><!-- 按钮2 说明 -->	
+					
+				</div>
+				<div id="decription_win"><!-- 说明弹窗 -->
+				<span>关闭</span>打字游戏是用于电脑初学者练习打字，熟悉键盘的游戏。
+				初学者可以根据自己的水平设置游戏难度，逐步提高打字速度。
+				打字游戏有英文打字、拼音打字、五笔打字、速度测试等	
+				</div>
+				<div id="lohin_win"><!-- 登录弹窗 -->
+					<h2>登录</h2>
+					<input type="text"/>
+					<input type="password"/>
+					<input id="lohin" type="submit"  value="登录" />
+					<input id="go_register" type="submit"  value="注册" />
+				</div>
+				<div id="register_win"><!-- 注册弹窗 -->
+					<h2>注册</h2>
+					<input type="text"/>
+					<input type="password"/>
+					<input id="register" type="submit"  value="提交" />
+				</div>
+			</div>
+			<div id="page2">
+				<div id="grade"><!-- 成绩展示区 -->
+					<span>得分：<strong id="element_sum">0</strong> 分</span>
+					<span>正确率：<strong id="element_zhengquelv">0.00</strong>%</span>
+					<span>速度： <strong id="element_sudu">0</strong> 个/分钟</span>
+				</div>
+				<div id="speed"><!-- 速度设置的弹窗 -->
+					<span>关闭</span>
+					<select>
+						<option value ="慢">慢</option>
+						<option value ="中">中</option>
+						<option value ="快">快</option>
+					</select>
+				</div>
+				<div id="buts">
+					<span id="buts_start">开始</span>
+					<span id="buts_exit">退出</span>
+					<span id="buts_set">设置</span>
+					<span id="buts_over">结束</span>
+				</div>
+			    <!-- 下面用于生成动态变化的元素 -->
+				<!-- <span class="word">a</span> -->
+			</div>
+		</div>
+		
+		
+	</body>
+</html>
